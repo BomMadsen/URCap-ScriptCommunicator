@@ -8,8 +8,6 @@ import java.net.Socket;
 
 public class ScriptSender {
 	
-	
-	
 	// IP of the robot 
 	private final String TCP_IP;
 	// Port for secondary client
@@ -45,22 +43,18 @@ public class ScriptSender {
 			// Create a new Socket Client
 			Socket sc = new Socket(TCP_IP, TCP_port);
 			if (sc.isConnected()){
-				System.out.println("Connected to UR Secondary Client");
-			}
-			
-			// Create stream for data
-			DataOutputStream out;
-			out = new DataOutputStream(sc.getOutputStream());
-			
-			// Send command
-			out.write(command.getBytes("US-ASCII"));
-			System.out.println("Send this: \n"+command);
-			out.flush();
+				// Create stream for data
+				DataOutputStream out;
+				out = new DataOutputStream(sc.getOutputStream());
+				
+				// Send command
+				out.write(command.getBytes("US-ASCII"));
+				out.flush();
 
-			// Perform housekeeping 
-			out.close();
+				// Perform housekeeping 
+				out.close();
+			}
 			sc.close();
-			System.out.println("Disconnected from UR Secondary Client");
 		} 
 		catch (IOException e){
 			System.out.println(e);

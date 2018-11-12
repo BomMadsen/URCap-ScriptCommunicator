@@ -1,8 +1,6 @@
 package com.jbm.urcap.sample.scriptCommunicator.communicator;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
@@ -11,7 +9,6 @@ import java.net.Socket;
 public class ScriptExporter {
 
 	private final String SEND_IP;
-	private final int SEND_PORT = 30002;
 	
 	private String RETURN_IP;
 	private int RETURN_PORT = 5500;
@@ -117,11 +114,9 @@ public class ScriptExporter {
 			sender.sendScriptCommand(commandWithReturn);
 			
 			Socket returnSocket = server.accept();
-			System.out.println("New client");
 			
 			BufferedReader readerFromURScript = new BufferedReader(new InputStreamReader(returnSocket.getInputStream()));
 			input = readerFromURScript.readLine();
-			System.out.println("Read this: "+input);
 			
 			// Housekeeping
 			readerFromURScript.close();
