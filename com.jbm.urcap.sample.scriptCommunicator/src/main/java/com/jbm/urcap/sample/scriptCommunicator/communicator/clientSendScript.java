@@ -1,4 +1,4 @@
-package com.jbm.urcap.sample.scriptCommunicator.impl;
+package com.jbm.urcap.sample.scriptCommunicator.communicator;
 
 // Used for reading from RealTime Client
 import java.io.DataOutputStream;
