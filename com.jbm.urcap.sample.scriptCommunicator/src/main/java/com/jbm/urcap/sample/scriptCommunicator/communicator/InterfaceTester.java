@@ -3,19 +3,17 @@ package com.jbm.urcap.sample.scriptCommunicator.communicator;
 public class InterfaceTester {
 
 	public static void main(String[] args) {
-		ScriptSender sender = new ScriptSender();
+		ScriptExporter export = new ScriptExporter();
 		
-		ScriptCommand command = new ScriptCommand("johnDoe");
-		System.out.println("Command is");
-		System.out.println(command);
+		ScriptCommand commandString = new ScriptCommand("JacobsCommand1");
+		commandString.appendLine("var_1 = \"Hello World\"");
 		
-		sender.sendScriptCommand(command);
+		export.exportStringFromURScript(commandString, "var_1");
 		
-		command.appendLine("popup(\"Lolz\")");
-		System.out.println("Command is");
-		System.out.println(command);
+		ScriptCommand commandInt = new ScriptCommand("JacobsCommand2");
+		commandInt.appendLine("var_2 = 42");
 		
-		sender.sendScriptCommand(command);
+		export.exportStringFromURScript(commandInt, "var_2");
 	}
 
 }
