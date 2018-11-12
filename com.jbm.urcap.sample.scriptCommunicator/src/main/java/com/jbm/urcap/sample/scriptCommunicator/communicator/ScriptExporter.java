@@ -67,7 +67,7 @@ public class ScriptExporter {
 	 * @return The resulting value of the variable, as an integer
 	 */
 	public int exportIntegerFromURScript(ScriptCommand command, String variable_name) {
-		ScriptCommand newCommand = buildScriptCommandToExport(command, variable_name, VARIABLE_TYPE.INTEGER);
+		ScriptCommand newCommand = buildScriptCommandToExport(command, variable_name);
 		String reply = readValueFromRobot(newCommand);
 		
 		int integerValue = Integer.parseInt(reply);
@@ -86,33 +86,19 @@ public class ScriptExporter {
 	 * @return The resulting value of the variable, as String
 	 */
 	public String exportStringFromURScript(ScriptCommand command, String variable_name) {
-		ScriptCommand newCommand = buildScriptCommandToExport(command, variable_name, VARIABLE_TYPE.STRING);
+		ScriptCommand newCommand = buildScriptCommandToExport(command, variable_name);
 		String reply = readValueFromRobot(newCommand);
 		
 		return reply;
 	}
 	
-	private enum VARIABLE_TYPE {
-		INTEGER("socket_send_int"),
-		STRING("socket_send_string");
-		
-		VARIABLE_TYPE(String exportCmd){
-			this.exportCmd = exportCmd;
-		}
-		private String exportCmd;
-		
-		public String getExportCmd() {
-			return this.exportCmd;
-		}
-	}
-	
-	private ScriptCommand buildScriptCommandToExport(ScriptCommand command, String variable_name, VARIABLE_TYPE variable_type) {
+	private ScriptCommand buildScriptCommandToExport(ScriptCommand command, String variable_name) {
 		// Change to secondary program
 		command.setAsSecondaryProgram();
 		
 		command.appendLine("socket_open(\""+RETURN_IP+"\","+RETURN_PORT+","+RETURN_SOCKETNAME+")");
 		
-		command.appendLine(variable_type.getExportCmd()+"("+variable_name+","+RETURN_SOCKETNAME+")");
+		command.appendLine("socket_send_string("+variable_name+","+RETURN_SOCKETNAME+")");
 		command.appendLine("socket_send_byte(13,"+RETURN_SOCKETNAME+")");	// CR
 		command.appendLine("socket_send_byte(10,"+RETURN_SOCKETNAME+")");	// LF
 		
