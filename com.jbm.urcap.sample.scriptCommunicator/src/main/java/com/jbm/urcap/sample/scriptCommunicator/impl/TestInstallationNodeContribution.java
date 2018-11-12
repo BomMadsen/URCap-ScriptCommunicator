@@ -5,6 +5,12 @@ import com.ur.urcap.api.domain.script.ScriptWriter;
 
 public class TestInstallationNodeContribution implements InstallationNodeContribution {
 
+	private final TestInstallationNodeView view;
+	
+	public TestInstallationNodeContribution(TestInstallationNodeView view) {
+		this.view = view;
+	}
+	
 	@Override
 	public void openView() {
 		// TODO Auto-generated method stub

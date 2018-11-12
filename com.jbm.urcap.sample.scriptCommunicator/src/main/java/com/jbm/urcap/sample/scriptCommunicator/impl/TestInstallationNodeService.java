@@ -13,27 +13,22 @@ public class TestInstallationNodeService implements SwingInstallationNodeService
 
 	@Override
 	public void configureContribution(ContributionConfiguration configuration) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public String getTitle(Locale locale) {
-		// TODO Auto-generated method stub
-		return null;
+		return "Script Communicator";
 	}
 
 	@Override
 	public TestInstallationNodeView createView(ViewAPIProvider apiProvider) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TestInstallationNodeView();
 	}
 
 	@Override
 	public TestInstallationNodeContribution createInstallationNode(InstallationAPIProvider apiProvider,
 			TestInstallationNodeView view, DataModel model, CreationContext context) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TestInstallationNodeContribution(view);
 	}
 
 }
