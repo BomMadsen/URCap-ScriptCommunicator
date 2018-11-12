@@ -12,6 +12,7 @@ syntax: glob
 .settings
 
 com.jbm.urcap.sample.scriptCommunicator/.settings/
+com.jbm.urcap.sample.scriptCommunicator/.gitignore
 com.jbm.urcap.sample.scriptCommunicator/target/classes/
 com.jbm.urcap.sample.scriptCommunicator/target/test-classes/
 com.jbm.urcap.sample.scriptCommunicator/target/generated-sources/
