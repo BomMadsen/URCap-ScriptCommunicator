@@ -11,6 +11,14 @@ public class TestInstallationNodeContribution implements InstallationNodeContrib
 		this.view = view;
 	}
 	
+	public void sendScriptTest() {
+		
+	}
+	
+	public void sendExporterTest() {
+		
+	}
+	
 	@Override
 	public void openView() {
 		// TODO Auto-generated method stub
