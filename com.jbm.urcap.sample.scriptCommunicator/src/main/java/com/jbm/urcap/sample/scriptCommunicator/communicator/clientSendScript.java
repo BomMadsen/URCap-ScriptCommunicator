@@ -42,7 +42,7 @@ public class clientSendScript {
 			String thisCommand = "def myCustomCode():\n "+command+"\n end\n";
 			
 			// Send command
-			out.writeUTF(thisCommand);
+			out.write(thisCommand.getBytes("US-ASCII"));
 			System.out.println("Send this: "+thisCommand);
 			out.flush();
 
