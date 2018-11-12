@@ -30,14 +30,13 @@ public class ScriptSender {
 		this.TCP_IP = IP;
 	}
 	
-	// Public method to send popup script to client interface
-	public void createPopup(String message){
-		sendToSecondary("popup(\""+message+"\")");
-	}
-	
-	// Public method to send MoveJ command to client interface
-	public void sendMoveJ(String pose){
-		sendToSecondary("movej("+pose+",a=1.57,v=0.5)");
+	/**
+	 * Method used to send a ScriptCommand as a primary program to the Secondary Client Interface.
+	 * If called while a program is already running, the existing program will halt.
+	 * @param command the ScriptCommand object to send.
+	 */
+	public void sendScriptCommand(ScriptCommand command) {
+		sendToSecondary(command.toString());
 	}
 	
 	// Internal method that sends script to client
@@ -53,12 +52,9 @@ public class ScriptSender {
 			DataOutputStream out;
 			out = new DataOutputStream(sc.getOutputStream());
 			
-			// Wrap command in "def" and "end"
-			String thisCommand = "def myCustomCode():\n "+command+"\nend\n";
-			
 			// Send command
-			out.write(thisCommand.getBytes("US-ASCII"));
-			System.out.println("Send this: \n"+thisCommand);
+			out.write(command.getBytes("US-ASCII"));
+			System.out.println("Send this: \n"+command);
 			out.flush();
 
 			// Perform housekeeping 
