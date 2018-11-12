@@ -1,0 +1,20 @@
+# use glob syntax.
+syntax: glob
+*.class
+*~
+*.bak
+*.off
+*.old
+
+# Eclipse
+.classpath
+.project
+.settings
+
+com.jbm.urcap.sample.scriptCommunicator/.settings/
+com.jbm.urcap.sample.scriptCommunicator/target/classes/
+com.jbm.urcap.sample.scriptCommunicator/target/test-classes/
+com.jbm.urcap.sample.scriptCommunicator/target/generated-sources/
+com.jbm.urcap.sample.scriptCommunicator/target/generated-test-sources/
+com.jbm.urcap.sample.scriptCommunicator/target/maven-status/
+com.jbm.urcap.sample.scriptCommunicator/target/surefire-reports/
