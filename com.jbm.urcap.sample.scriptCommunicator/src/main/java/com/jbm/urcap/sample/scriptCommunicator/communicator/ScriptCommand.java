@@ -2,7 +2,11 @@ package com.jbm.urcap.sample.scriptCommunicator.communicator;
 
 public class ScriptCommand {
 
-	private final String prefix;
+	private boolean sendAsPrimary = true;
+	private final String primary_prefix = "def ";
+	private final String secondary_prefix = "sec ";
+	
+	private final String programName;
 	private final String postfix = "end\n";
 	
 	private String commandContent = "";
@@ -11,7 +15,7 @@ public class ScriptCommand {
 	 * Create a new ScriptCommand
 	 */
 	public ScriptCommand() {
-		this.prefix = "def myCustomScript():\n";
+		this.programName = "myCustomScript():\n";
 	}
 	
 	/** 
@@ -19,7 +23,7 @@ public class ScriptCommand {
 	 * @param commandName the custom name (must be alphanumeric, start with letter)
 	 */
 	public ScriptCommand(String commandName) {
-		this.prefix = "def "+commandName+"():\n";
+		this.programName = commandName+"():\n";
 	}
 	
 	/**
@@ -30,10 +34,27 @@ public class ScriptCommand {
 		commandContent += " "+command+"\n";
 	}
 	
+	public void setAsPrimaryProgram() {
+		this.sendAsPrimary = true;
+	}
+	
+	public void setAsSecondaryProgram() {
+		this.sendAsPrimary = false;
+	}
+	
+	public boolean isPrimaryProgram() {
+		return this.sendAsPrimary;
+	}
+	
 	@Override
 	public String toString() {
-		String command;
-		command = this.prefix;
+		String command = "";
+		if(this.sendAsPrimary) {
+			command += primary_prefix;
+		} else {
+			command += secondary_prefix;
+		}
+		command += this.programName;
 		command += this.commandContent;
 		command += this.postfix;
 		return command;
