@@ -35,7 +35,7 @@ public class TestInstallationNodeView implements SwingInstallationNodeView<TestI
 		
 		box.add(new JLabel("When below button is pushed, the following URScript will be sent:"));
 		box.add(new JLabel(" def testSend():"));
-		box.add(new JLabel("   popup(\\\"This is a popup\\\")"));
+		box.add(new JLabel("   popup(\"This is a popup\")"));
 		box.add(new JLabel(" end"));
 		
 		JButton button = new JButton("SEND");
