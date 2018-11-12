@@ -34,14 +34,26 @@ public class ScriptCommand {
 		commandContent += " "+command+"\n";
 	}
 	
+	/**
+	 * Send this ScriptCommand as a primary program
+	 * This is the default behavior
+	 */
 	public void setAsPrimaryProgram() {
 		this.sendAsPrimary = true;
 	}
 	
+	/**
+	 * Send this ScriptCommand as a secondary program
+	 * Note: In this mode, no commands must take physical time
+	 */
 	public void setAsSecondaryProgram() {
 		this.sendAsPrimary = false;
 	}
 	
+	/**
+	 * Returns if the ScriptCommand is configured as a primary program
+	 * @return true if a primary program, false if a secondary program
+	 */
 	public boolean isPrimaryProgram() {
 		return this.sendAsPrimary;
 	}
