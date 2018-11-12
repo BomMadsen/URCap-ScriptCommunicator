@@ -1,5 +1,7 @@
 package com.jbm.urcap.sample.scriptCommunicator.impl;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +22,7 @@ public class TestInstallationNodeView implements SwingInstallationNodeView<TestI
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		panel.add(createSenderTestButton(contribution));
+		panel.add(createSpacer(40));
 		panel.add(createExporterTestButton(contribution));
 	}
 	
@@ -30,12 +33,10 @@ public class TestInstallationNodeView implements SwingInstallationNodeView<TestI
 	private Box createSenderTestButton(final TestInstallationNodeContribution contribution) {
 		Box box = Box.createVerticalBox();
 		
-		String text = "When below button is pushed, the following URScript will be sent:\n";
-		text += "def testSend():\n";
-		text += " popup(\"This is a popup\")\n";
-		text += "end";
-		
-		JLabel description = new JLabel(text);
+		box.add(new JLabel("When below button is pushed, the following URScript will be sent:"));
+		box.add(new JLabel(" def testSend():"));
+		box.add(new JLabel("   popup(\\\"This is a popup\\\")"));
+		box.add(new JLabel(" end"));
 		
 		JButton button = new JButton("SEND");
 		button.addActionListener(new ActionListener() {
@@ -45,7 +46,7 @@ public class TestInstallationNodeView implements SwingInstallationNodeView<TestI
 			}
 		});
 		
-		box.add(description);
+		box.add(createSpacer(10));
 		box.add(button);
 		
 		return box;
@@ -54,13 +55,11 @@ public class TestInstallationNodeView implements SwingInstallationNodeView<TestI
 	private Box createExporterTestButton(final TestInstallationNodeContribution contribution) {
 		Box box = Box.createVerticalBox();
 		
-		String text = "When below button is pushed, the value of \"z_value\" is exported to the URCap:\n";
-		text += "def testSend():\n";
-		text += " pose = get_actual_tcp_pose()\n";
-		text += " z_value = pose[2]\n";
-		text += "end";
-		
-		JLabel description = new JLabel(text);
+		box.add(new JLabel("When below button is pushed, the value of \"z_value\" is exported to the URCap:"));
+		box.add(new JLabel(" sec exportVariable():"));
+		box.add(new JLabel("   pose = get_actual_tcp_pose()"));
+		box.add(new JLabel("   z_value = pose[2]"));
+		box.add(new JLabel(" end"));
 		
 		JButton button = new JButton("SEND");
 		button.addActionListener(new ActionListener() {
@@ -69,15 +68,18 @@ public class TestInstallationNodeView implements SwingInstallationNodeView<TestI
 				contribution.sendExporterTest();
 			}
 		});
-		
-		JLabel returnDescription = new JLabel("Returned value:");
-		
-		box.add(description);
+
+		box.add(createSpacer(10));
 		box.add(button);
-		box.add(returnDescription);
+		box.add(createSpacer(10));
+		box.add(new JLabel("Returned value:"));
 		box.add(this.RETURN_VALUE);
 		
 		return box;
+	}
+	
+	private Component createSpacer(int height) {
+		return Box.createRigidArea(new Dimension(0, height));
 	}
 
 }
