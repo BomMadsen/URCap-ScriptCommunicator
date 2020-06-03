@@ -89,7 +89,7 @@ public class ScriptExporter {
 		return reply;
 	}
 	
-	private ScriptCommand buildScriptCommandToExport(ScriptCommand command, String variable_name) {
+	protected ScriptCommand buildScriptCommandToExport(ScriptCommand command, String variable_name) {
 		// Change to secondary program
 		command.setAsSecondaryProgram();
 		
@@ -104,12 +104,11 @@ public class ScriptExporter {
 		return command;
 	}
 	
-	private String readValueFromRobot(ScriptCommand commandWithReturn) {
+	protected String readValueFromRobot(ScriptCommand commandWithReturn) {
 		String input = "";
 		try{
 			// Create return socket
 			ServerSocket server = new ServerSocket(RETURN_PORT);
-			
 			ScriptSender sender = new ScriptSender(SEND_IP);
 			sender.sendScriptCommand(commandWithReturn);
 			
